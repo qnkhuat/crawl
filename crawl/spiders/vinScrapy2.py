@@ -3,11 +3,11 @@ import scrapy
 import argparse
 
 class QuotesSpider(scrapy.Spider):
-    name = "vins"
+    name = "vins2"
     def start_requests(self):
         start_urls = []
         iterations=10
-        vin='http://randomvin.com/getvin.php?type=real'
+        vin='https://vingenerator.org/'
         [start_urls.append(vin) for i in range(iterations)]
 
         for url in start_urls:
@@ -15,7 +15,6 @@ class QuotesSpider(scrapy.Spider):
 
 
     def parse(self,response):
-        for code in response.css('p::text'):
-            yield{
-                'vin': code.extract(),
-            }
+        yield{
+            'vin': response.css('.input::attr(value)').extract()[0]
+        }
