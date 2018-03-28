@@ -6,7 +6,7 @@ class QuotesSpider(scrapy.Spider):
     name = "vins2"
     def start_requests(self):
         start_urls = []
-        iterations=10
+        iterations=1000000
         vin='https://vingenerator.org/'
         [start_urls.append(vin) for i in range(iterations)]
 
